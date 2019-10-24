@@ -1,0 +1,24 @@
+{
+  "name": "src",
+  "version": "0.1.0",
+  "description": "",
+  "main": "handlers.js",
+  "scripts": {
+    "test": "mocha --exit -u exports test/**/*"
+  },
+  "keywords": [
+    "sample"
+  ],
+  "author": "Edison Spencer",
+  "license": "MIT",
+  "dependencies": {
+    "npm": "^5.8.0",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "node-mocks-http": "^1.7.3",
+    "sinon": "^7.2.2",
+    "supertest": "^3.3.0"
+  }
+}
