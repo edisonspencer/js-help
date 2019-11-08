@@ -18,8 +18,6 @@ describe('Handlers', function () {
     let request;
     let response;
     let requester;
-    let promiseResolve;
-    let promiseReject;
 
 	context('weather endpoint', function () {
 
@@ -43,20 +41,17 @@ describe('Handlers', function () {
             response = httpMock.createResponse();
         });
 
-        it('returns weather on success', function () {
-            sinon.stub(requester, 'get').callsFake((url) => {
-                return new Promise((resolve, reject) => {
-                    promiseResolve = resolve;
-                    promiseReject = reject;
+        it('returns weather on success', async function () {
+            sinon.stub(requester, 'get').callsFake((_) => {
+                return new Promise((resolve, _) => {
+                    resolve(expectedServiceResponse);
                 });
             });
-
-            handler.weather(request, response);
+            
+            await handler.weather(request, response);
 
             assert.ok(requester.get.calledOnce, 'Expected RequesterService.get to have been called once');
             assert.equal(requester.get.getCall(0).args[0], `https://some-url.com`);
-
-            promiseResolve(expectedServiceResponse);
 
             assert.ok(mockWeatherParser.parseWeather.calledOnce, 'Expected WeatherParser.parseWeather to have been called once'); // fails here
             assert.equal(mockWeatherParser.parseWeather.getCall(0).args[0], expectedServiceResponse);
