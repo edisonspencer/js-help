@@ -12,7 +12,7 @@
   "author": "Edison Spencer",
   "license": "MIT",
   "dependencies": {
-    "npm": "^5.8.0",
+    "npm": "^6.14.6",
     "request": "^2.83.0"
   },
   "devDependencies": {
